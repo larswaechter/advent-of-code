@@ -8,39 +8,6 @@ const tail = Array(9)
   .fill(null)
   .map(() => [11, 5]);
 
-const printBoard = ([hX, hY]) => {
-  let s = "";
-  for (let row = 21; row >= 0; row--) {
-    s += (row < 10 ? `0${row}` : row) + " ";
-    inner: for (let col = 0; col < 26; col++) {
-      if (row === hY && col === hX) s += "H";
-      else {
-        for (let i = 0; i < tail.length; i++) {
-          if (tail[i][0] === col && tail[i][1] === row) {
-            s += i + 1;
-            continue inner;
-          }
-        }
-        s += ".";
-      }
-    }
-    s += "\n";
-  }
-  console.log(s);
-};
-
-const printHistory = () => {
-  let s = "";
-  for (let row = 21; row >= 0; row--) {
-    for (let col = 0; col < 26; col++) {
-      if (moveHistory.has(`${col}-${row}`)) s += "#";
-      else s += ".";
-    }
-    s += "\n";
-  }
-  console.log(s);
-};
-
 const moveTail = ([tX, tY], [hX, hY]) => {
   // Move horizontal
   if (hY === tY) {
